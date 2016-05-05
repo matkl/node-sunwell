@@ -5,7 +5,8 @@
   "main": "sunwell.js",
   "scripts": {
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha",
-    "coveralls": "cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+    "coveralls": "cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "postpublish": "git push && git push --tags"
   },
   "repository": "matkl/node-sunwell",
   "keywords": [
