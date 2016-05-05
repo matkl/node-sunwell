@@ -1,69 +1,49 @@
-Sunwell
-=======
+node-sunwell
+============
 
-A HTML5 canvas based renderer for hearthstone cards.
-This works in your browser through javascript.
+[![Build Status](https://travis-ci.org/matkl/node-sunwell.svg?branch=master)](https://travis-ci.org/matkl/node-sunwell)
+[![Coverage Status](https://coveralls.io/repos/github/matkl/node-sunwell/badge.svg?branch=master)](https://coveralls.io/github/matkl/node-sunwell?branch=master)
+
+An HTML5 canvas based renderer for hearthstone cards for node.js. Forked from [HearthSim/sunwell](https://github.com/HearthSim/sunwell).
 
 Requirements
 ------------
 
-Obviously, you need a couple of graphical assets to make this renderer work.
-
-I prepared a couple of skeleton assets for the cards via Photoshop, but the main card artworks are not
-included in this repository. In order to render cards, you need to obtain the card artworks and place
-them in the `/artwork` folder.
-
-You also need to obtain a copy of the Belwe and ITC Franklin Gothic font, as its being used to render the cards title, body
-and number values. You can place the web font files in the `/font` directory. A substitute for the card body text
-font will be loaded from google fonts.
-
-
+See [HearthSim/sunwell](https://github.com/HearthSim/sunwell) for detailed information. Card artworks and fonts are not included. Set `textureFolder` to the folder where you put the card artworks when creating the sunwell object.
 
 Usage
 -----
-Load the web fonts, used on your rendered cards through CSS, or even better: [google font loader](https://github.com/typekit/webfontloader).
-
-Set up sunwell with your own settings before loading the library itself:
+Set up sunwell with your own settings:
 
 ```javascript
-<script>
-	window.sunwell = {
-		settings: {
-			titleFont: 'Belwe',
-			bodyFont: 'ITC Franklin Condensed',
-			bodyFontSize: 24,
-			bodyLineHeight: 55,
-			bodyFontOffset: {x: 0, y: 0},
-			assetFolder: '/assets/',
-			textureFolder: '/artworks/',
-			smallTextureFolder: '/smallArtworks/',
-			autoInit: false,
-			debug: false
-		}
-	};
-</script>
-<script src="sunwell.js">
+var Sunwell = require('node-sunwell');
+var sunwell = new Sunwell({
+	titleFont: 'Belwe',
+	bodyFont: 'ITC Franklin Condensed',
+	bodyFontSize: 24,
+	bodyLineHeight: 55,
+	bodyFontOffset: {x: 0, y: 0},
+	textureFolder: __dirname + '/artworks/',
+	smallTextureFolder: __dirname + '/smallArtworks/',
+	debug: false
+});
 ```	
 
-If you set `autoInit` to `false` - which I recommend; sunwell will wait with the rendering of any cards until you call
-`sunwell.init()`. Call this methods when your web fonts have been loaded.
-	
-After being loaded, sunwell will provide the methods to the global object `sunwell` for you to interact with and
-generate cards from.
-
-
 ###Rendering a card
-To render a specific card, you can call the method `createCard()` of the global `sunwell` object.
+To render a specific card, you can call the method `createCard()` of the `sunwell` object.
 
-	var cardObj = sunwell.createCard(cardData, width, [renderTarget]);
-	
+```javascript
+var cardObj = sunwell.createCard(cardData, width, function(err, buffer) {
+	// buffer contains PNG data
+});
+```
+
 The `cardData` parameter is an object containing information about the card to be rendered. `width`
 defines the width of the card to be rendered. Sunwell provides a "native" resolution up to 764x1100
 pixels. While you can set a higher value than 764 for the desired render, it will only result in blurry
 results. The max supported resolution of sunwell is already by far greater than in the game itself.
 
-The `renderTarget` parameter is the only one thats optional. Pass a previously created Image object 
-here, to have the rendered result in there. If you don't provide such an object, sunwell will create one.
+The callback will be invoked with the rendered card buffer.
 
 The object you pass as `cardData` can be obtained for example through [HearthstoneJSON](https://hearthstonejson.com/).
 
@@ -107,8 +87,6 @@ In case of a minion or weapon card, you also need to pass `health` (or `durabili
 
 The method will return an object that provides an interface to manipulate the card after its creation.
 
-You can also access the image object that contains the cards image data through `cardObj.target`.
-
 If you want to update certain properties on the original `cardData`, simply call `cardObj.update()` and
 pass an object with the properties you want to overwrite.
 
@@ -136,12 +114,10 @@ To silence a minion, set `silenced: true` either when creating the card, or with
 Introduced by [Cho'gall](http://hearthstonelabs.com/cards#lang=enUS;detail=OG_121), cards may cost health instead of mana.
 You can switch any cards cost icon by setting `costHealth: true` either when creating the card, or through the update function.
 
+## Author
 
-## Community
-
-Sunwell is a [HearthSim](http://hearthsim.info) project. All development
-happens on our IRC channel `#hearthsim` on [Freenode](https://freenode.net).
-
+Original work by Christian Engel <hello@wearekiss.com>
+Node.js port by Matthias Klein <matthias@klein.pw>
 
 # License
 
