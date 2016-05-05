@@ -1,0 +1,22 @@
+{
+  "name": "sunwell",
+  "version": "0.1.0",
+  "description": "Canvas based renderer for Hearthstone cards.",
+  "main": "sunwell.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matkl/node-sunwell.git"
+  },
+  "keywords": [
+    "hearthstone"
+  ],
+  "author": "Matthias Klein <matthias@klein.pw>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matkl/node-sunwell/issues"
+  },
+  "homepage": "https://github.com/matkl/node-sunwell#readme"
+}
