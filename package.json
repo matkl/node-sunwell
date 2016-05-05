@@ -1,5 +1,5 @@
 {
-  "name": "sunwell",
+  "name": "node-sunwell",
   "version": "0.1.0",
   "description": "Canvas based renderer for Hearthstone cards.",
   "main": "sunwell.js",
