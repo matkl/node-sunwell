@@ -16,7 +16,6 @@ module.exports = function(settings) {
     'use strict';
 
     var sunwell = {},
-        assets = {},
         pluralRegex = /(\d+)(.+?)\|4\((.+?),(.+?)\)/g,
         validRarity = ['COMMON', 'RARE', 'EPIC', 'LEGENDARY'];
 
@@ -60,10 +59,6 @@ module.exports = function(settings) {
         imgReplacement = new Image();
         imgReplacement.src = buffer.toBuffer();
         return imgReplacement;
-    }
-
-    function getAsset(id) {
-        return assets[id] || getMissingImg(id);
     }
 
     sunwell.settings = settings || {};
@@ -158,7 +153,7 @@ module.exports = function(settings) {
         return new Promise(function (resolve) {
             var loaded = 0,
                 loadingTotal = 1,
-                result = {},
+                assets = {},
                 key,
                 isTexture,
                 smallTexture,
@@ -199,21 +194,19 @@ module.exports = function(settings) {
                     assets[key].onload = function () {
                         loaded++;
                         assets[key].loaded = true;
-                        result[key] = assets[key];
                         if (!assets[key].width || !assets[key].height) {
                             assets[key] = getMissingImg();
                         }
                         if (loaded >= loadingTotal) {
-                            resolve(result);
+                            resolve(assets);
                         }
                     };
                     assets[key].onerror =  function () {
                         loaded++;
 
                         assets[key] = getMissingImg();
-                        result[key] = assets[key];
                         if (loaded >= loadingTotal) {
-                            resolve(result);
+                            resolve(assets);
                         }
                     };
                 })(key);
@@ -237,7 +230,7 @@ module.exports = function(settings) {
 
             loadingTotal--;
             if (loaded > 0 && loaded >= loadingTotal) {
-                resolve(result);
+                resolve(assets);
             }
         });
     }
@@ -850,7 +843,7 @@ module.exports = function(settings) {
         );
     }
 
-    function draw(cvs, ctx, card, s, callback, internalCB) {
+    function draw(getAsset, cvs, ctx, card, s, callback, internalCB) {
 
         var sw = card.sunwell,
             t,
@@ -1141,9 +1134,14 @@ module.exports = function(settings) {
         log('Assets prepared, now loading');
 
         fetchAssets(loadList)
-            .then(function () {
+            .then(function (assets) {
                 log('Assets loaded for: ' + card.title);
-                draw(cvs, ctx, card, s, callback, function () {
+
+                function getAsset(id) {
+                    return assets[id] || getMissingImg(id);
+                }
+
+                draw(getAsset, cvs, ctx, card, s, callback, function () {
                     log('Card rendered: ' + card.title);
                 });
             })
