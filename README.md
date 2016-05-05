@@ -122,12 +122,17 @@ To silence a minion, set `silenced: true` either when creating the card, or with
 Introduced by [Cho'gall](http://hearthstonelabs.com/cards#lang=enUS;detail=OG_121), cards may cost health instead of mana.
 You can switch any cards cost icon by setting `costHealth: true` either when creating the card, or through the update function.
 
+## Examples
+
+See [](examples/).
+
 ## Author
 
 Original work by Christian Engel <hello@wearekiss.com>
+
 Node.js port by Matthias Klein <matthias@klein.pw>
 
-# License
+## License
 
 Sunwell is licensed
 [MIT](http://choosealicense.com/licenses/mit/). The full license text is
