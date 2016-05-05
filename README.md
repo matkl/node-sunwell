@@ -124,7 +124,7 @@ You can switch any cards cost icon by setting `costHealth: true` either when cre
 
 ## Examples
 
-See [](examples/).
+See [examples/](examples/).
 
 ## Author
 
