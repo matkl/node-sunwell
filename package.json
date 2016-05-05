@@ -4,12 +4,10 @@
   "description": "Canvas based renderer for Hearthstone cards.",
   "main": "sunwell.js",
   "scripts": {
-    "test": "mocha"
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha",
+    "coveralls": "cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/matkl/node-sunwell.git"
-  },
+  "repository": "matkl/node-sunwell",
   "keywords": [
     "hearthstone"
   ],
@@ -24,6 +22,8 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
+    "istanbul": "^0.4.3",
     "mocha": "^2.4.5"
   }
 }
