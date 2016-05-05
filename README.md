@@ -3,6 +3,8 @@ node-sunwell
 
 [![Build Status](https://travis-ci.org/matkl/node-sunwell.svg?branch=master)](https://travis-ci.org/matkl/node-sunwell)
 [![Coverage Status](https://coveralls.io/repos/github/matkl/node-sunwell/badge.svg?branch=master)](https://coveralls.io/github/matkl/node-sunwell?branch=master)
+[![npm version](http://img.shields.io/npm/v/node-sunwell.svg?style=flat)](https://npmjs.org/package/node-sunwell "View this project on npm")
+
 
 An HTML5 canvas based renderer for hearthstone cards for node.js. Forked from [HearthSim/sunwell](https://github.com/HearthSim/sunwell).
 
@@ -10,6 +12,12 @@ Requirements
 ------------
 
 See [HearthSim/sunwell](https://github.com/HearthSim/sunwell) for detailed information. Card artworks and fonts are not included. Set `textureFolder` to the folder where you put the card artworks when creating the sunwell object.
+
+Installation
+------------
+```
+$ npm install --save node-sunwell
+```
 
 Usage
 -----
