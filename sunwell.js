@@ -69,8 +69,11 @@ module.exports = function(settings) {
     sunwell.settings.bodyFontOffset = sunwell.settings.bodyFontOffset || {x: 0, y: 0};
     sunwell.settings.bodyLineHeight = sunwell.settings.bodyLineHeight || 50;
     sunwell.settings.assetFolder = sunwell.settings.assetFolder || path.join(__dirname, 'assets');
+    sunwell.settings.assetExtension = sunwell.settings.assetExtension || 'png';
     sunwell.settings.textureFolder = sunwell.settings.textureFolder || path.join(__dirname, 'artwork');
+    sunwell.settings.textureExtension = sunwell.settings.textureExtension || 'jpg';
     sunwell.settings.smallTextureFolder = sunwell.settings.smallTextureFolder || null;
+    sunwell.settings.smallTextureExtension = sunwell.settings.smallTextureExtension || 'jpg';
     sunwell.settings.autoInit = sunwell.settings.autoInit || true;
     sunwell.settings.idAsTexture = sunwell.settings.idAsTexture || false;
 
@@ -216,12 +219,12 @@ module.exports = function(settings) {
                     if (isTexture) {
                         assets[key].isTexture = true;
                         if (smallTexture) {
-                            srcURL = path.join(sunwell.settings.smallTextureFolder, key + '.png');
+                            srcURL = path.join(sunwell.settings.smallTextureFolder, key + '.' + sunwell.settings.smallTextureExtension);
                         } else {
-                            srcURL = path.join(sunwell.settings.textureFolder, key + '.png');
+                            srcURL = path.join(sunwell.settings.textureFolder, key + '.' + sunwell.settings.textureExtension);
                         }
                     } else {
-                        srcURL = path.join(sunwell.settings.assetFolder, key + '.png');
+                        srcURL = path.join(sunwell.settings.assetFolder, key + '.' + sunwell.settings.assetExtension);
                     }
                     log('Requesting ' + srcURL);
                     assets[key].src = srcURL;
