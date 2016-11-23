@@ -5,6 +5,7 @@ node-sunwell
 [![Coverage Status](https://coveralls.io/repos/github/matkl/node-sunwell/badge.svg?branch=master)](https://coveralls.io/github/matkl/node-sunwell?branch=master)
 [![npm version](http://img.shields.io/npm/v/node-sunwell.svg?style=flat)](https://npmjs.org/package/node-sunwell "View this project on npm")
 
+## This repository is probably outdated and was only created for my own uses. Please use [HearthSim/sunwell](https://github.com/HearthSim/sunwell).
 
 An HTML5 canvas based renderer for hearthstone cards for node.js. Forked from [HearthSim/sunwell](https://github.com/HearthSim/sunwell).
 
